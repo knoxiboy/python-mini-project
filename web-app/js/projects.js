@@ -23,10 +23,11 @@ function getProjectHTML(projectName) {
         'morse-code': getMorseCodeHTML(),
         'tower-of-hanoi': getTowerOfHanoiHTML(),
         'number-converter': getNumberConverterHTML(),
-        'typing-speed-tester': getTypingSpeedTesterHTML()
+        'typing-speed-tester': getTypingSpeedTesterHTML(),
         'snake-game': getsnakeGameHTML(),
         'password-forge': getPasswordForgeHTML(),
-        'whack-a-mole': getWhackaMoleHTML(),
+        'whack-a-mole': getWhackaMoleHTML(),  
+        'simon-says': getSimonSaysHTML(),
     };
 
     return projects[projectName] || '<h2>Project Coming Soon!</h2>';
@@ -57,6 +58,7 @@ function initializeProject(projectName) {
         'typing-speed-tester': initTypingSpeedTester,
         'snake-game': initSnakeGame,
         'whack-a-mole': initWhackaMole,
+        'simon-says': initSimonSays,
     };
 
     if (initializers[projectName]) {
