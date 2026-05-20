@@ -1,4 +1,4 @@
-﻿// Project Registry
+// Project Registry
 // Each project's HTML and logic lives in its own file under js/projects/
 
 function getProjectHTML(projectName) {
@@ -7,7 +7,7 @@ function getProjectHTML(projectName) {
         'rock-paper-scissor': () => getRockPaperScissorHTML(),
         'dice-rolling': () => getDiceRollingHTML(),
         'coin-flip': () => getCoinFlipHTML(),
-        'blackjack(21)' : () => getBlackjackHTML(),
+        'blackjack-21': () => getBlackjackHTML(),
         'number-guessing': () => getNumberGuessingHTML(),
         'hangman': () => getHangmanHTML(),
         'word-scramble': () => getWordScrambleHTML(),
@@ -54,7 +54,7 @@ function initializeProject(projectName) {
         'rock-paper-scissor': initRockPaperScissor,
         'dice-rolling': initDiceRolling,
         'coin-flip': initCoinFlip,
-        'blackjack(21)' : initBlackjack,
+        'Blackjack-21' : initBlackjack,
         'number-guessing': initNumberGuessing,
         'hangman': initHangman,
         'flames': initFlames,
@@ -3471,31 +3471,6 @@ function getTowerOfHanoiHTML() {
     `;
 }
 
-function initTowerOfHanoi() {
-    const canvas = document.getElementById('hanoiCanvas');
-    const ctx = canvas.getContext('2d');
-    const diskCountInput = document.getElementById('diskCount');
-    const solveBtn = document.getElementById('solveBtn');
-    const resetBtn = document.getElementById('resetHanoi');
-    const moveCountEl = document.getElementById('moveCount');
-    const optimalMovesEl = document.getElementById('optimalMoves');
-    
-    let towers = [[], [], []];
-    let diskCount = 3;
-    let moveCount = 0;
-    let isAnimating = false;
-    let shouldStop = false;
-    
-    const towerX = [200, 400, 600];
-    const baseY = 350;
-    const diskHeight = 20;
-    const maxDiskWidth = 120;
-    const colors = ['#ff6b6b', '#f59e0b', '#10b981', '#06b6d4', '#6366f1', '#8b5cf6', '#ec4899'];
-    
-    function initTowers() {
-        towers = [[], [], []];
-        moveCount = 0;
-        diskCount = parseInt(diskCountInput.value) || 3;
 
         //Reset animation state
         isAnimating = false;
@@ -3840,7 +3815,6 @@ function initializeProject(projectName) {
     if (initializers[projectName]) {
         initializers[projectName]();
     }
-}
 }
 
 //Removed Redundant game and project Logics and seperated them to different individual files located at (web-app/js/projects/)
