@@ -1604,6 +1604,8 @@ const projectInstructions = {
       "The player with the higher card rank wins the round and gets a point.",
       "Ace is the highest, 2 is the lowest.",
       "Play continues until all cards are drawn. The player with the most points wins!"
+    ]
+  },
   "number-sliding-puzzle": {
     title: "🧩 How to Play Number Sliding Puzzle",
     steps: [
@@ -1879,6 +1881,16 @@ const projectInstructions = {
       "Choose a mood",
       "Click 'Generate Palette'",
       "Click any color to copy its hex code"
+    ]
+  },
+  "budget-tracker": {
+    title: "💰 How to Use Budget Tracker",
+    steps: [
+      "Select the transaction type (Income or Expense) from the dropdown.",
+      "Enter a category, description (optional), and positive amount value.",
+      "Click 'Add Transaction' to log it in your dashboard.",
+      "Analyze spending behavior through dynamic category-wise progress bars.",
+      "Clear individual records using the delete action or wipe out all history securely."
     ]
   },
   "morse-code": {
@@ -3176,8 +3188,9 @@ function initializeProject(projectName) {
     "math-quiz": "initMathQuiz",
     "resume-analyzer": "initResumeAnalyzer",
     "caesar-cipher": "initCaesarCipher",
-    "war-card-game": "initWarCardGame"
-    "number-sliding-puzzle": "initNumberSlidingPuzzle"
+    "war-card-game": "initWarCardGame",
+    "number-sliding-puzzle": "initNumberSlidingPuzzle",
+    "budget-tracker": "initBudgetTracker"
   };
 
   const initializerName = initializers[projectName];
