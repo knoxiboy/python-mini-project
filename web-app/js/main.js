@@ -104,46 +104,38 @@ var recentSearches = JSON.parse(localStorage.getItem("recentSearches") || "[]");
 // INFO MODAL FUNCTIONS
 // ============================================
 
+// main.js ~line 107 — reorder like this:
 function showInfoModal(title, steps) {
   var overlay = document.getElementById("infoModalOverlay");
   var titleEl = document.getElementById("infoModalTitle");
   var listEl = document.getElementById("infoModalList");
 
+  // ✅ Declare BEFORE closeModal so they're available inside it
+  var closeBtn = document.getElementById("infoModalClose");
+  var gotItBtn = document.getElementById("infoModalGotIt");
+
   if (!overlay || !titleEl || !listEl) return;
 
   titleEl.textContent = title;
-  listEl.innerHTML = ""; // Safely clear the existing list
+  listEl.innerHTML = "";
   steps.forEach(function (step) {
-    const li = document.createElement("li");
-    li.textContent = step; // textContent automatically escapes malicious scripts!
+    var li = document.createElement("li");
+    li.textContent = step;
     listEl.appendChild(li);
   });
 
-  const toggleBackToTopButton = () => {
-    if (!backToTopButton) return;
-    backToTopButton.classList.toggle('visible', window.scrollY > 300);
-  };
   overlay.classList.add("active");
 
   function closeModal() {
     overlay.classList.remove("active");
-    closeBtn.removeEventListener("click", closeModal);
+    closeBtn.removeEventListener("click", closeModal);   // ✅ now works
     gotItBtn.removeEventListener("click", closeModal);
     overlay.removeEventListener("click", overlayClick);
   }
 
-  if (backToTopButton) {
-    backToTopButton.addEventListener('click', () => {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-    });
-  }
   function overlayClick(e) {
     if (e.target === overlay) closeModal();
   }
-
-  var closeBtn = document.getElementById("infoModalClose");
-  var gotItBtn = document.getElementById("infoModalGotIt");
 
   closeBtn.addEventListener("click", closeModal);
   gotItBtn.addEventListener("click", closeModal);

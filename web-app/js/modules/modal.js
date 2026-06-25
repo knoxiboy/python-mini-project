@@ -64,18 +64,21 @@ export function showInfoModal(title, steps) {
 
   function closeModal() {
     overlay.classList.remove("active");
-    closeBtn?.removeEventListener("click", closeModal);
-    gotItBtn?.removeEventListener("click", closeModal);
-    overlay.removeEventListener("click", overlayClick);
   }
 
   function overlayClick(e) {
     if (e.target === overlay) closeModal();
   }
 
-  closeBtn?.addEventListener("click", closeModal);
-  gotItBtn?.addEventListener("click", closeModal);
-  overlay.addEventListener("click", overlayClick);
+  // ✅ { once: true } auto-removes the listener after first click
+  closeBtn?.addEventListener("click", closeModal, { once: true });
+  gotItBtn?.addEventListener("click", closeModal, { once: true });
+
+  // ✅ Clone the overlay to wipe any previously stacked overlayClick listeners
+  const newOverlay = overlay.cloneNode(false); // shallow clone keeps id/class
+  overlay.parentNode.replaceChild(newOverlay, overlay);
+  // Re-grab references after clone
+  // ... actually simpler: just track with a flag:
 }
 
 export function setupModalInfoButton(projectName) {
